@@ -1,1 +1,1 @@
-web: gunicorn mathwiki.wsgi
+web: gunicorn mathwikiproject.wsgi

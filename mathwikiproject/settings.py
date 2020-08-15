@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'mathwiki.urls'
+ROOT_URLCONF = 'mathwikiproject.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mathwiki.wsgi.application'
+WSGI_APPLICATION = 'mathwikiproject.wsgi.application'
 
 
 # Database
