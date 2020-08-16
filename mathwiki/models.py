@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Axiom(models.Model):
     name = models.CharField(max_length = 300)
+    summary = models.TextField(blank = True)
     statement = models.TextField()
 
     def __str__(self):
@@ -10,6 +11,7 @@ class Axiom(models.Model):
 
 class MathematicalProperty(models.Model):
     name = models.CharField(max_length = 300)
+    summary = models.TextField(blank = True)
     statement = models.TextField()
     applies_to = models.ManyToManyField('MathematicalObject')
 
@@ -19,6 +21,7 @@ class MathematicalProperty(models.Model):
 
 class MathematicalObject(models.Model):
     name = models.CharField(max_length = 300)
+    summary = models.TextField(blank = True)
     definition = models.TextField()
 
     parent_objects = models.ForeignKey('self', on_delete = models.SET_NULL, null = True, blank = True)
@@ -36,6 +39,7 @@ class Theorem(models.Model):
         ('T', 'Theorem')
     )
     name = models.CharField(max_length = 300)
+    summary = models.TextField(blank = True)
     theorem_type = models.CharField(max_length = 1, choices = THEOREM_TYPE_CHOICES)
     proof = models.TextField()
     included_objects = models.ManyToManyField(MathematicalObject)

@@ -8,10 +8,50 @@
 {{ object.definition}}
 {% endautoescape %}
 
-<h2>Contains</h2>
-<ul>
-    {% for obj in object.contains.all %}
-    <li><a href="/objects/{{ obj.id }}">{{ obj.name }}</a></li>
+<h2>Properties</h2>
+<div class="ui relaxed list">
+    {% for obj in object.properties.all %}
+        <div class="item">
+          <div class="content">
+            <a href="/objects/{{obj.id}}" class="header">{{obj.name}}</a>
+            <div class="description">{{obj.summary}}</div>
+          </div>
+        </div>
     {% endfor %}
-</ul>
+</div>
+<h2>Contains</h2>
+<div class="ui relaxed list">
+    {% for obj in object.contains.all %}
+        <div class="item">
+          <div class="content">
+            <a href="/objects/{{obj.id}}" class="header">{{obj.name}}</a>
+            <div class="description">{{obj.summary}}</div>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block sidebar %}
+
+<h4>Properties</h4>
+<div class="ui relaxed list">
+    {% for obj in object.properties.all %}
+        <div class="item">
+          <div class="content">
+            <a href="/objects/{{obj.id}}" class="header">{{obj.name}}</a>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+<h4>Contains</h4>
+<div class="ui relaxed list">
+    {% for obj in object.contains.all %}
+        <div class="item">
+          <div class="content">
+            <a href="/objects/{{obj.id}}" class="header">{{obj.name}}</a>
+          </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
