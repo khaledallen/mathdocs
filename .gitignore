@@ -4,4 +4,4 @@ staticfiles
 .env
 db.sqlite3
 getting-started/*
-secret_key
+secret_key.txt
