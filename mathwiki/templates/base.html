@@ -1,38 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="style.css">
-    <title>{% block title %}Khaled's Math Wiki{% endblock %}</title>
-
-    <!-- FomanticUI because I want to try something other than bootstrap -->
-    <!-- You MUST include jQuery before Fomantic -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.6/dist/semantic.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.6/dist/semantic.min.js"></script>
-    <!-- Setting up and importing MathJax -->
-    <script>
-        MathJax = {
-          tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']]
-          }
-        };
-        </script>
-        <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-        </script>
- 
-</head>
+  {% include "head.html" %}
 
 <body>
 
-    <div class="ui secondary menu" style="background-color:#b9e9ee;padding: 1rem 0 1rem;">
-    <div class="ui container">
-      <div class="header">
-        <h1>Khaled's Math Wiki</h1>
-      </div>
-      <a class="item" href="/">Home</a>
-    </div>
-  </div>
+  {% include "menu.html" %}
 
   <div class="ui container grid">
     <div id="sidebar" class="four wide column">

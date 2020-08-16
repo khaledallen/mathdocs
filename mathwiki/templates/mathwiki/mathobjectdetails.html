@@ -13,7 +13,7 @@
     {% for obj in object.properties.all %}
         <div class="item">
           <div class="content">
-            <a href="/objects/{{obj.id}}" class="header">{{obj.name}}</a>
+            <a href="{% url 'object_details' obj.id %}" class="header">{{obj.name}}</a>
             <div class="description">{{obj.summary}}</div>
           </div>
         </div>
@@ -24,7 +24,7 @@
     {% for obj in object.contains.all %}
         <div class="item">
           <div class="content">
-            <a href="/objects/{{obj.id}}" class="header">{{obj.name}}</a>
+            <a href="{% url 'object_details' obj.id %}" class="header">{{obj.name}}</a>
             <div class="description">{{obj.summary}}</div>
           </div>
         </div>

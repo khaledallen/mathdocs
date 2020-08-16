@@ -1,9 +1,57 @@
-{% extends "base.html" %}
+{% extends "full_width_base.html" %}
+
 
 {% block content %}
-<ul>
-{% for obj in objects %}
-    <li><a href="/objects/{{obj.id}}">{{obj.name}}</a></li>
-{% endfor %}
-</ul>
+<div class="ui vertical segment">
+    <div class="ui text">
+        <h1 class="ui header">Math Docs</h1>
+        <p>
+            This project was created to help me (Kali) better organize my mathematics knowledge in a way similar to how 
+            I document code, which emphasizes the interconnections and interrelations between code objects and concepts.
+
+            The way math is taught, at least the way I've seen it, is that the emphasis is on developing complex
+            operations and relations, without any concern for conveying the overall structure of the field being explored.
+
+            This is an attempt to remedy that.
+
+        </p>
+    </div>
+</div>
+<div class="ui segment">
+    <div class="ui container grid">
+        <div class="eight wide column">
+            <h3>Basic Structure</h3>
+            <p><strong>Mathematical Objects: </strong>Mathematical objects are the primary thing the docs deal with. These
+            include everything from sets, to groups, to functions, to operations. Basically, a mathematical object is a thing
+            which is defined at some point. If you can say, "let $x$ be a $y$," then $y$ is a mathematical object.</p>
+
+            <p><strong>Mathematical Properties: </strong>
+                Objects have properties. If a mathematical concept does not make sense except as part of something else, it is probably
+                a property. The Associative Property modifies an operation or a function.
+            </p>
+
+            <p><strong>Theorems, Propositions, Lemmas, Corollaries:</strong>
+                Anything that is to be proven is considered a Theorem (or one of its subtypes). These are statements <em>about</em>
+                mathematical objects, either demonstrating that certain objects are also other objects, or that certain objects have 
+                certain properties. Bascially, theorems say something about objects.
+            </p>
+
+            <p><strong>Axioms:</strong>
+                Axioms are included to provide a foundation for the base level structure. They are unproven statements, but I 
+                wanted to keep them separate from theorems since they tend to be a little less variable in their expression.
+            </p>
+        </div>
+        <div class="eight wide column">
+            <h3>Recently added entries</h3>
+            <div class="ui list">
+                {% for obj in objects %}
+                    <div class="item">
+                        <a class="header" href="/objects/{{obj.id}}">{{obj.name}}</a>
+                        <p class="description">{{obj.summary}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
