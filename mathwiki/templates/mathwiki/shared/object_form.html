@@ -1,0 +1,60 @@
+{{ form.non_field_errors }}
+    <div class="field">
+        <label for="{{ form.name.id_for_label }}">Object Name:</label>
+        {{ form.name.errors }}
+        {{ form.name }} 
+    </div>
+    <div class="ui grid preview-fields">
+        <div class="row">
+            <div class="eight wide column">
+                <div class="field">
+                    <label for="{{ form.summary.id_for_label }}">Object Summary:</label>
+                    {{ form.summary.errors }}
+                    {{ form.summary }} 
+                </div>
+            </div>
+            <div class="eight wide column">
+                <div class="latex-preview"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="eight wide column">
+                <div class="field">
+                    <label for="{{ form.definition.id_for_label }}">Object Definition:</label>
+                    {{ form.definition.errors }}
+                    {{ form.definition }} 
+                </div>
+            </div>
+            <div class="eight wide column">
+                <div class="latex-preview"></div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="eight wide column">
+                <div class="field">
+                    <label for="{{ form.notes.id_for_label }}">Notes:</label>
+                    {{ form.notes.errors }}
+                    {{ form.notes }} 
+                </div>
+            </div>
+            <div class="eight wide column">
+                <div class="latex-preview"></div>
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label for="{{ form.parent_objects.id_for_label }}">Parent Object:</label>
+        {{ form.parent_objects.errors }}
+        {{ form.parent_objects }} 
+    </div>
+    <div class="field">
+        <label for="{{ form.contains.id_for_label }}">Contains Object:</label>
+        {{ form.contains.errors }}
+        {{ form.contains }} 
+    </div>
+    <div class="field">
+        <label for="{{ form.properties.id_for_label }}">Object Properties:</label>
+        {{ form.properties.errors }}
+        {{ form.properties }} 
+    </div>

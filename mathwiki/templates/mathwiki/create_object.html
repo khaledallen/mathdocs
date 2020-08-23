@@ -3,51 +3,27 @@
 <h1>Create new mathematical object</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
 <div class="ui container grid">
-    <div class="eight wide column">
+    <div class="sixteen wide column">
         <form class="ui form" action="{% url 'create_object' %}" method="post">
         {% csrf_token %}
-        {{ form.non_field_errors }}
-            <div class="field">
-                <label for="{{ form.name.id_for_label }}">Object Name:</label>
-                {{ form.name.errors }}
-                {{ form.name }} 
-            </div>
-            <div class="field">
-                <label for="{{ form.summary.id_for_label }}">Object Summary:</label>
-                {{ form.summary.errors }}
-                {{ form.summary }} 
-            </div>
-            <div class="field">
-                <label for="{{ form.definition.id_for_label }}">Object Definition:</label>
-                {{ form.definition.errors }}
-                {{ form.definition }} 
-            </div>
-            <div class="field">
-                <label for="{{ form.notes.id_for_label }}">Notes:</label>
-                {{ form.notes.errors }}
-                {{ form.notes }} 
-            </div>
-            <div class="field">
-                <label for="{{ form.parent_objects.id_for_label }}">Parent Object:</label>
-                {{ form.parent_objects.errors }}
-                {{ form.parent_objects }} 
-            </div>
-            <div class="field">
-                <label for="{{ form.contains.id_for_label }}">Contains Object:</label>
-                {{ form.contains.errors }}
-                {{ form.contains }} 
-            </div>
-            <div class="field">
-                <label for="{{ form.properties.id_for_label }}">Object Properties:</label>
-                {{ form.properties.errors }}
-                {{ form.properties }} 
-            </div>
-
+        {% include './shared/object_form.html' %}
         <input type="submit" value="Submit">
         </form>
     </div>
 </div>
-<script>$('.ui.dropdown').dropdown();</script>
+{% endblock %}
+
+{% block scripts %}
+    <script>$('.ui.dropdown').dropdown();</script>
+    {% load static %}
+    <script src="{% static './mathwiki/js/latexpreview.js' %}"></script>
+{% endblock%}
+
+{% block styles %}
+<style>
+    .latex-preview {
+        margin-top: 1.28571429rem;
+    }
+</style>
 {% endblock %}

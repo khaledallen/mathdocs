@@ -44,6 +44,8 @@ class Theorem(models.Model):
     name = models.CharField(max_length = 300)
     summary = models.TextField(blank = True)
     notes = models.TextField(blank = True)
+    hypothesis = models.TextField(blank = True)
+    conclusion = models.TextField(blank = True)
     theorem_type = models.CharField(max_length = 1, choices = THEOREM_TYPE_CHOICES)
     proof = models.TextField()
     included_objects = models.ManyToManyField(MathematicalObject)

@@ -1,0 +1,42 @@
+{{ form.non_field_errors }}
+    <div class="field">
+        <label for="{{ form.name.id_for_label }}">Theorem Name:</label>
+        {{ form.name.errors }}
+        {{ form.name }} 
+    </div>
+    <div class="field">
+        <label for="{{ form.theorem_type.id_for_label }}">Theorem Type:</label>
+        {{ form.theorem_type.errors }}
+        {{ form.theorem_type }} 
+    </div>
+    <div class="field">
+        <label for="{{ form.summary.id_for_label }}">Theorem Summary:</label>
+        {{ form.summary.errors }}
+        {{ form.summary }} 
+    </div>
+    <div class="field">
+        <label for="{{ form.hypothesis.id_for_label }}">Theorem Hypothesis:</label>
+        {{ form.hypothesis.errors }}
+        {{ form.hypothesis }} 
+    </div>
+    <div class="field">
+        <label for="{{ form.conclusion.id_for_label }}">Theorem Conclusion:</label>
+        {{ form.conclusion.errors }}
+        {{ form.conclusion }} 
+    </div>
+    <div class="field">
+        <label for="{{ form.proof.id_for_label }}">Theorem Proof:</label>
+        {{ form.proof.errors }}
+        {{ form.proof }} 
+    </div>
+    <div class="field">
+        <label for="{{ form.notes.id_for_label }}">Notes:</label>
+        {{ form.notes.errors }}
+        {{ form.notes }} 
+    </div>
+    <div class="field">
+        <label for="{{ form.included_objects.id_for_label }}">Included Objects:</label>
+        {{ form.included_objects.errors }}
+        {{ form.included_objects }} 
+    </div>
+

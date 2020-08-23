@@ -1,38 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ object.name}} </h1>
-<a href="{% url 'edit_object' object.id %}">Edit</a>
+<h1>{{ theorem_type_display }} {{ theorem.name}} </h1>
+<a href="{% url 'edit_theorem' theorem.id %}">Edit</a>
+
+<h2>Hypothesis</h2>
+{% autoescape off %}
+{{ theorem.hypothesis}}
+{% endautoescape %}
+
+<h2>Conclusion</h2>
+{% autoescape off %}
+{{ theorem.conclusion}}
+{% endautoescape %}
 
 <h2>Summary</h2>
 {% autoescape off %}
-{{ object.summary}}
+{{ theorem.summary}}
 {% endautoescape %}
 
-<h2>Definition</h2>
+<h2>Proof</h2>
 {% autoescape off %}
-{{ object.definition}}
+{{ theorem.proof}}
 {% endautoescape %}
 
 <h2>Notes</h2>
 {% autoescape off %}
-{{ object.notes }}
+{{ theorem.notes }}
 {% endautoescape %}
 
-<h2>Properties</h2>
+<h2>Includes</h2>
 <div class="ui relaxed list">
-    {% for obj in object.properties.all %}
-        <div class="item">
-          <div class="content">
-            <a href="{% url 'object_details' obj.id %}" class="header">{{obj.name}}</a>
-            <div class="description">{{obj.summary}}</div>
-          </div>
-        </div>
-    {% endfor %}
-</div>
-<h2>Contains</h2>
-<div class="ui relaxed list">
-    {% for obj in object.contains.all %}
+    {% for obj in theorem.included_objects.all %}
         <div class="item">
           <div class="content">
             <a href="{% url 'object_details' obj.id %}" class="header">{{obj.name}}</a>
@@ -47,20 +46,20 @@
 
 <h4>Properties</h4>
 <div class="ui relaxed list">
-    {% for obj in object.properties.all %}
+    {% for obj in theorem.properties.all %}
         <div class="item">
           <div class="content">
-            <a href="/objects/{{obj.id}}" class="header">{{obj.name}}</a>
+            <a href="/theorems/{{obj.id}}" class="header">{{obj.name}}</a>
           </div>
         </div>
     {% endfor %}
 </div>
 <h4>Contains</h4>
 <div class="ui relaxed list">
-    {% for obj in object.contains.all %}
+    {% for obj in theorem.contains.all %}
         <div class="item">
           <div class="content">
-            <a href="/objects/{{obj.id}}" class="header">{{obj.name}}</a>
+            <a href="/theorems/{{obj.id}}" class="header">{{obj.name}}</a>
           </div>
         </div>
     {% endfor %}
