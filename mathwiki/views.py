@@ -79,7 +79,7 @@ class EditTheorem(View):
 
     def get(self, request, theorem_id, **kwargs):
         theorem = Theorem.objects.get(pk=theorem_id)
-        form = self.form_class(instance=object)
+        form = self.form_class(instance=theorem)
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):

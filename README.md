@@ -12,14 +12,19 @@ run with `python3 manage.py runserver`
 changes to the models require updating the migrations and database via `python3 manage.py makemigrations` and then `python3 manage.py migrate`.
 
 ### Todo
-- [ ] enable editing objects
-- [ ] enable creating/editing theorems
 - [ ] enable creating/editing properties
 - [ ] enable creating/editing axioms
 - [ ] enable LaTeX preview on creating/editing screens using LaTeXNotes
-- [ ] Add "Depends on" to theorem models
-- [ ] Add "Reveals" to theorem models
+    - [ ] object creating
+    - [ ] object editing
+    - [ ] theorem creating and edinting
+    - [ ] property
 - [ ] Add "Used in" to object models
 - [ ] Add login to prevent random people for adding to the database
 - [ ] Add steps to theorem proofs
 - [ ] Add progressive reveal for theorem steps
+
+- [x] enable editing objects
+- [x] enable creating/editing theorems
+- [x] Add "Hypothesis" to theorem models
+- [x] Add "Conclusion" to theorem models
