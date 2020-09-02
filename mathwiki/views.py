@@ -70,10 +70,10 @@ class EditObject(View):
             return HttpResponseRedirect('/objects/{}'.format(object_id))
 
         context = {
-            'theorem': theorem,
+            'theorem': object,
             'form': form,
-            'title': 'Edit ' + theorem.name,
-            'form_action': 'edit_theorem',
+            'title': 'Edit ' + object.name,
+            'form_action': 'edit_object',
             'form_template': self.form_template
         }
         return render(request, self.template_name, context)
@@ -132,6 +132,7 @@ class EditTheorem(View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
+        theorem = Theorem.objects.get(pk=theorem_id)
         form = self.form_class(request.POST, instance=theorem)
         if form.is_valid():
             # <process form cleaned data>
