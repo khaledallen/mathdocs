@@ -116,7 +116,7 @@ class CreateTheorem(View):
 
 class EditTheorem(View):
     form_class = TheoremForm
-    form_template = 'mathwiki/theorem_form.html'
+    form_template = 'mathwiki/shared/theorem_form.html'
     template_name = 'mathwiki/create_edit_form_wrapper.html'
 
     def get(self, request, theorem_id, **kwargs):
