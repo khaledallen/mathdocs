@@ -137,7 +137,7 @@ class EditTheorem(View):
         if form.is_valid():
             # <process form cleaned data>
             form.save()
-            return HttpResponseRedirect('/objects/{}'.format(theorem_id))
+            return HttpResponseRedirect('/theorems/{}'.format(theorem_id))
 
         context = {
             'theorem': theorem,

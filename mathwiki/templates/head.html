@@ -14,7 +14,14 @@
         tex: {
           inlineMath: [ ['$','$'], ["\\(","\\)"] ],
           displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-          processEscapes: true
+          processEscapes: true,
+          macros: {
+            Z: "\\mathbb{Z}",
+            R: "\\mathbb{R}",
+            C: "\\mathbb{C}",
+            Q: "\\mathbb{Q}",
+            F: "\\mathbb{F}"
+          }
         },
         options: {
           ignoreHtmlClass: 'tex2jax_ignore',
