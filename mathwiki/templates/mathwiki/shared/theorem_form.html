@@ -9,29 +9,12 @@
         {{ form.theorem_type.errors }}
         {{ form.theorem_type }} 
     </div>
-    <div class="field">
-        <label for="{{ form.summary.id_for_label }}">Theorem Summary:</label>
-        {{ form.summary.errors }}
+    <div class="ui grid preview-fields">
         {{ form.summary }} 
-    </div>
-    <div class="field">
-        <label for="{{ form.hypothesis.id_for_label }}">Theorem Hypothesis:</label>
-        {{ form.hypothesis.errors }}
         {{ form.hypothesis }} 
-    </div>
-    <div class="field">
-        <label for="{{ form.conclusion.id_for_label }}">Theorem Conclusion:</label>
-        {{ form.conclusion.errors }}
         {{ form.conclusion }} 
-    </div>
-    <div class="field">
-        <label for="{{ form.proof.id_for_label }}">Theorem Proof:</label>
-        {{ form.proof.errors }}
         {{ form.proof }} 
-    </div>
-    <div class="field">
-        <label for="{{ form.notes.id_for_label }}">Notes:</label>
-        {{ form.notes.errors }}
+        {{ form.examples }}
         {{ form.notes }} 
     </div>
     <div class="field">

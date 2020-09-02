@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "head.html" %}
+
+<body>
+
+  {% include "menu.html" %}
+
+  <div class="ui container grid">
+    <div class="row">
+      <div id="content" class="column">
+          {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+  {% block scripts %}
+      <script>$('.ui.dropdown').dropdown();</script>
+      {% load static %}
+      <script src="{% static './mathwiki/js/latexpreview.js' %}"></script>
+  {% endblock%}
+
+  {% block styles %}
+  <style>
+      .latex-preview {
+          margin-top: 1.28571429rem;
+      }
+  </style>
+  {% endblock %}
+</body>
+</html>

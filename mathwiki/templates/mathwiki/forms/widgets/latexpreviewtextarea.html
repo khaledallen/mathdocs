@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="eight wide column">
+        <div class="field">
+            <label for="{{ widget.id_for_label }}">{{ widget.name}}:</label>
+            {{ widget.errors }}
+            <textarea name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>{% if widget.value %}{{ widget.value }}{% endif %}</textarea>
+        </div>
+    </div>
+    <div class="eight wide column">
+        <div class="latex-preview"></div>
+    </div>
+</div>

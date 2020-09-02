@@ -6,6 +6,7 @@ class Axiom(models.Model):
     summary = models.TextField(blank = True)
     statement = models.TextField()
     notes = models.TextField(blank = True)
+    examples = models.TextField(blank = True)
 
     def __str__(self):
         return self.name
@@ -15,6 +16,7 @@ class MathematicalProperty(models.Model):
     summary = models.TextField(blank = True)
     statement = models.TextField()
     notes = models.TextField(blank = True)
+    examples = models.TextField(blank = True)
     applies_to = models.ManyToManyField('MathematicalObject')
 
     def __str__(self):
@@ -25,6 +27,7 @@ class MathematicalObject(models.Model):
     name = models.CharField(max_length = 300)
     summary = models.TextField(blank = True)
     definition = models.TextField()
+    examples = models.TextField(blank = True)
     notes = models.TextField(blank = True)
 
     parent_objects = models.ForeignKey('self', on_delete = models.SET_NULL, null = True, blank = True)
@@ -48,6 +51,8 @@ class Theorem(models.Model):
     conclusion = models.TextField(blank = True)
     theorem_type = models.CharField(max_length = 1, choices = THEOREM_TYPE_CHOICES)
     proof = models.TextField()
+    examples = models.TextField(blank = True)
+    references = models.ManyToManyField('self', blank=True, symmetrical=False)
     included_objects = models.ManyToManyField(MathematicalObject)
     def __str__(self):
         return self.name

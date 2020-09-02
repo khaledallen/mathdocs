@@ -1,0 +1,15 @@
+{% extends "form_base.html" %}
+{% block content %}
+<h1>{{title}}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<div class="ui container grid">
+    <div class="sixteen wide column">
+        <form class="ui form" action="{{ form_action_url }}" method="post">
+        {% csrf_token %}
+        {% include form_template %}
+        <input class="ui button" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}
