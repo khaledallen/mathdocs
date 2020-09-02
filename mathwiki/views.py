@@ -131,7 +131,7 @@ class EditTheorem(View):
         }
         return render(request, self.template_name, context)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, theorem_id, **kwargs):
         theorem = Theorem.objects.get(pk=theorem_id)
         form = self.form_class(request.POST, instance=theorem)
         if form.is_valid():
