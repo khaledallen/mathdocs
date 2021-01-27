@@ -12,6 +12,7 @@ run with `python3 manage.py runserver`
 changes to the models require updating the migrations and database via `python3 manage.py makemigrations` and then `python3 manage.py migrate`.
 
 ### Todo
+- [x] add \norm{G}{A} = \text{Norm}_G(A)
 - [ ] Add subtheorems references to Theorem model
 - [ ] enable creating/editing properties
 - [ ] enable creating/editing axioms
