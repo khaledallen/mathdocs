@@ -20,9 +20,11 @@
 {% endautoescape %}
 
 <h2>Proof</h2>
+<div class="proof">
 {% autoescape off %}
 {{ theorem.proof}}
 {% endautoescape %}
+</div>
 
 <h2>Notes</h2>
 {% autoescape off %}
@@ -64,4 +66,9 @@
         </div>
     {% endfor %}
 </div>
+
 {% endblock %}
+{% block scripts %}
+    {% load static %}
+    <script src="{% static './mathwiki/js/stepdisplay.js' %}"></script>
+{% endblock%}

@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
@@ -19,7 +20,7 @@ def object_details(request, object_id):
     context = {'object': object}
     return render(request, 'mathwiki/mathobjectdetails.html', context)
 
-class CreateObject(View):
+class CreateObject(LoginRequiredMixin, View):
     form_class = ObjectForm
     form_template = 'mathwiki/shared/object_form.html'
     template_name = 'mathwiki/create_edit_form_wrapper.html'
@@ -44,7 +45,7 @@ class CreateObject(View):
 
         return render(request, self.template_name, {'form': form})
 
-class EditObject(View):
+class EditObject(LoginRequiredMixin, View):
     form_class = ObjectForm
     form_template = 'mathwiki/shared/object_form.html'
     template_name = 'mathwiki/create_edit_form_wrapper.html'
@@ -70,7 +71,7 @@ class EditObject(View):
             return HttpResponseRedirect('/objects/{}'.format(object_id))
 
         context = {
-            'theorem': object,
+            'object': object,
             'form': form,
             'title': 'Edit ' + object.name,
             'form_action': 'edit_object',
@@ -83,7 +84,7 @@ def theorem_details(request, theorem_id):
     context = {'theorem': theorem, 'theorem_type_display': theorem.get_theorem_type_display() }
     return render(request, 'mathwiki/theoremdetails.html', context)
 
-class CreateTheorem(View):
+class CreateTheorem(LoginRequiredMixin, View):
     form_class = TheoremForm
     form_template = 'mathwiki/shared/theorem_form.html'
     template_name = 'mathwiki/create_edit_form_wrapper.html'
@@ -105,16 +106,9 @@ class CreateTheorem(View):
             new_thm = form.save()
             return HttpResponseRedirect('/theorems/{}'.format(new_thm.id))
 
-        context = {
-            'theorem': theorem,
-            'form': form,
-            'title': 'Edit ' + theorem.name,
-            'form_action': 'edit_theorem',
-            'form_template': self.form_template
-        }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, {'form': form})
 
-class EditTheorem(View):
+class EditTheorem(LoginRequiredMixin, View):
     form_class = TheoremForm
     form_template = 'mathwiki/shared/theorem_form.html'
     template_name = 'mathwiki/create_edit_form_wrapper.html'
@@ -154,7 +148,7 @@ def axiom_details(request, axiom_id):
     context = {'axiom': axiom}
     return render(request, 'mathwiki/axiomdetails.html', context)
 
-class CreateAxiom(View):
+class CreateAxiom(LoginRequiredMixin, View):
     form_class = AxiomForm
     form_template = 'mathwiki/shared/axiom_form.html'
     template_name = 'mathwiki/create_edit_form_wrapper.html'
@@ -185,7 +179,7 @@ class CreateAxiom(View):
         }
         return render(request, self.template_name, context)
 
-class EditAxiom(View):
+class EditAxiom(LoginRequiredMixin, View):
     form_class = AxiomForm
     form_template = 'mathwiki/shared/axiom_form.html'
     template_name = 'mathwiki/create_edit_form_wrapper.html'
@@ -224,7 +218,7 @@ def property_details(request, property_id):
     context = {'property': property}
     return render(request, 'mathwiki/propertydetails.html', context)
 
-class CreateProperty(View):
+class CreateProperty(LoginRequiredMixin, View):
     form_class = PropertyForm
     form_template = 'mathwiki/shared/property_form.html'
     template_name = 'mathwiki/create_edit_form_wrapper.html'
@@ -255,7 +249,7 @@ class CreateProperty(View):
         }
         return render(request, self.template_name, context)
 
-class EditProperty(View):
+class EditProperty(LoginRequiredMixin, View):
     form_class = PropertyForm
     form_template = 'mathwiki/shared/property_form.html'
     template_name = 'mathwiki/create_edit_form_wrapper.html'

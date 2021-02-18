@@ -1,9 +1,13 @@
 from django.urls import path
+from django.conf.urls import include
+
 
 from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('accounts/', include('django.contrib.auth.urls')),
+
     path('objects/<int:object_id>/', views.object_details, name="object_details"),
     path('objects/create/', views.CreateObject.as_view(), name="create_object"),
     path('objects/edit/<int:object_id>', views.EditObject.as_view(), name="edit_object"),
