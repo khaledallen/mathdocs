@@ -4,8 +4,8 @@ from django.views import View
 from django.urls import reverse
 from django import forms
 
-from .models import MathematicalObject, Theorem
-from .forms import ObjectForm, TheoremForm
+from .models import MathematicalObject, Theorem, Axiom, MathematicalProperty
+from .forms import ObjectForm, TheoremForm, AxiomForm, PropertyForm
 
 # Create your views here.
 def index(request):
@@ -144,6 +144,147 @@ class EditTheorem(View):
             'form': form,
             'title': 'Edit ' + theorem.name,
             'form_action': 'edit_theorem',
+            'form_template': self.form_template
+        }
+        return render(request, self.template_name, context)
+
+
+def axiom_details(request, axiom_id):
+    axiom = get_object_or_404(Axiom, pk=axiom_id)
+    context = {'axiom': axiom}
+    return render(request, 'mathwiki/axiomdetails.html', context)
+
+class CreateAxiom(View):
+    form_class = AxiomForm
+    form_template = 'mathwiki/shared/axiom_form.html'
+    template_name = 'mathwiki/create_edit_form_wrapper.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        context = {
+            'form': form,
+            'title': 'Create New Axiom',
+            'form_action_url': reverse('create_axiom'),
+            'form_template': self.form_template
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            new_axiom = form.save()
+            return HttpResponseRedirect('/axioms/{}'.format(new_axiom.id))
+
+        context = {
+            'axiom': axiom,
+            'form': form,
+            'title': 'Edit ' + axiom.name,
+            'form_action': 'edit_axiom',
+            'form_template': self.form_template
+        }
+        return render(request, self.template_name, context)
+
+class EditAxiom(View):
+    form_class = AxiomForm
+    form_template = 'mathwiki/shared/axiom_form.html'
+    template_name = 'mathwiki/create_edit_form_wrapper.html'
+
+    def get(self, request, axiom_id, **kwargs):
+        axiom = Axiom.objects.get(pk=axiom_id)
+        form = self.form_class(instance=axiom)
+        context = {
+            'axiom': axiom,
+            'form': form,
+            'title': 'Edit ' + axiom.name,
+            'form_action': 'edit_axiom',
+            'form_template': self.form_template
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, axiom_id, **kwargs):
+        axiom = Axiom.objects.get(pk=axiom_id)
+        form = self.form_class(request.POST, instance=axiom)
+        if form.is_valid():
+            # <process form cleaned data>
+            form.save()
+            return HttpResponseRedirect('/axioms/{}'.format(axiom_id))
+
+        context = {
+            'axiom': axiom,
+            'form': form,
+            'title': 'Edit ' + axiom.name,
+            'form_action': 'edit_axiom',
+            'form_template': self.form_template
+        }
+        return render(request, self.template_name, context)
+
+def property_details(request, property_id):
+    property = get_object_or_404(MathematicalProperty, pk=property_id)
+    context = {'property': property}
+    return render(request, 'mathwiki/propertydetails.html', context)
+
+class CreateProperty(View):
+    form_class = PropertyForm
+    form_template = 'mathwiki/shared/property_form.html'
+    template_name = 'mathwiki/create_edit_form_wrapper.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        context = {
+            'form': form,
+            'title': 'Create New Property',
+            'form_action_url': reverse('create_property'),
+            'form_template': self.form_template
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            new_prop = form.save()
+            return HttpResponseRedirect('/properties/{}'.format(new_prop.id))
+
+        context = {
+            'property': property,
+            'form': form,
+            'title': 'Edit ' + property.name,
+            'form_action': 'edit_property',
+            'form_template': self.form_template
+        }
+        return render(request, self.template_name, context)
+
+class EditProperty(View):
+    form_class = PropertyForm
+    form_template = 'mathwiki/shared/property_form.html'
+    template_name = 'mathwiki/create_edit_form_wrapper.html'
+
+    def get(self, request, property_id, **kwargs):
+        property = MathematicalProperty.objects.get(pk=property_id)
+        form = self.form_class(instance=property)
+        context = {
+            'property': property,
+            'form': form,
+            'title': 'Edit ' + property.name,
+            'form_action': 'edit_property',
+            'form_template': self.form_template
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, property_id, **kwargs):
+        property = MathematicalProperty.objects.get(pk=property_id)
+        form = self.form_class(request.POST, instance=property)
+        if form.is_valid():
+            # <process form cleaned data>
+            form.save()
+            return HttpResponseRedirect('/properties/{}'.format(property_id))
+
+        context = {
+            'property': property,
+            'form': form,
+            'title': 'Edit ' + property.name,
+            'form_action': 'edit_property',
             'form_template': self.form_template
         }
         return render(request, self.template_name, context)

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ axiom.name}} </h1>
+<a href="{% url 'edit_axiom' axiom.id %}">Edit</a>
+
+<h2>Summary</h2>
+{% autoescape off %}
+{{axiom.summary}}
+{% endautoescape %}
+
+<h2>Definition</h2>
+{% autoescape off %}
+{{axiom.statement}}
+{% endautoescape %}
+
+<h2>Examples</h2>
+{% autoescape off %}
+{{axiom.examples}}
+{% endautoescape %}
+
+<h2>Notes</h2>
+{% autoescape off %}
+{{axiom.notes }}
+{% endautoescape %}
+
+<h2>Used In</h2>
+<div class="ui relaxed list">
+    {% for obj in axiom.used_in.all %}
+        <div class="item">
+          <div class="content">
+            <a href="{% url 'axiom_details' obj.id %}" class="header">{{obj.name}}</a>
+            <div class="description">{{obj.summary}}</div>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block sidebar %}
+
+<h4>Used In</h4>
+<div class="ui relaxed list">
+    {% for obj in axiom.used_in.all %}
+        <div class="item">
+          <div class="content">
+            <a href="/theorem/{{obj.id}}" class="header">{{obj.name}}</a>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

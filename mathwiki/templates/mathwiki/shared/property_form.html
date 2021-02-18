@@ -1,0 +1,17 @@
+{{ form.non_field_errors }}
+    <div class="field">
+        <label for="{{ form.name.id_for_label }}">Object Name:</label>
+        {{ form.name.errors }}
+        {{ form.name }} 
+    </div>
+    <div class="ui grid preview-fields">
+        {{ form.summary }} 
+        {{ form.statement }} 
+        {{ form.examples }} 
+        {{ form.notes }} 
+    </div>
+    <div class="field">
+        <label for="{{ form.properties.id_for_label }}">Applies To:</label>
+        {{ form.applies_to.errors }}
+        {{ form.applies_to }} 
+    </div>

@@ -46,6 +46,17 @@
         </div>
     {% endfor %}
 </div>
+<h2>Used In</h2>
+<div class="ui relaxed list">
+    {% for obj in object.used_in.all %}
+        <div class="item">
+          <div class="content">
+            <a href="{% url 'object_details' obj.id %}" class="header">{{obj.name}}</a>
+            <div class="description">{{obj.summary}}</div>
+          </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
 
 {% block sidebar %}
@@ -63,6 +74,16 @@
 <h4>Contains</h4>
 <div class="ui relaxed list">
     {% for obj in object.contains.all %}
+        <div class="item">
+          <div class="content">
+            <a href="/objects/{{obj.id}}" class="header">{{obj.name}}</a>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+<h4>Used In</h4>
+<div class="ui relaxed list">
+    {% for obj in object.used_in.all %}
         <div class="item">
           <div class="content">
             <a href="/objects/{{obj.id}}" class="header">{{obj.name}}</a>

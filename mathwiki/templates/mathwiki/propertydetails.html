@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ property.name}} </h1>
+<a href="{% url 'edit_property' property.id %}">Edit</a>
+
+<h2>Summary</h2>
+{% autoescape off %}
+{{property.summary}}
+{% endautoescape %}
+
+<h2>Statement</h2>
+{% autoescape off %}
+{{property.statement}}
+{% endautoescape %}
+
+<h2>Examples</h2>
+{% autoescape off %}
+{{property.examples}}
+{% endautoescape %}
+
+<h2>Notes</h2>
+{% autoescape off %}
+{{property.notes }}
+{% endautoescape %}
+
+<h2>Applies To</h2>
+<div class="ui relaxed list">
+    {% for obj in property.applies_to.all %}
+        <div class="item">
+          <div class="content">
+            <a href="{% url 'property_details' obj.id %}" class="header">{{obj.name}}</a>
+            <div class="description">{{obj.summary}}</div>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block sidebar %}
+
+<h4>Used In</h4>
+<div class="ui relaxed list">
+    {% for obj in property.applies_to.all %}
+        <div class="item">
+          <div class="content">
+            <a href="/theorem/{{obj.id}}" class="header">{{obj.name}}</a>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
