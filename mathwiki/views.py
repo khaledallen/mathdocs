@@ -247,14 +247,16 @@ class CreateProperty(LoginRequiredMixin, View):
             new_prop = form.save()
             return HttpResponseRedirect('/properties/{}'.format(new_prop.id))
 
-        context = {
-            'property': property,
-            'form': form,
-            'title': 'Edit ' + property.name,
-            'form_action': 'edit_property',
-            'form_template': self.form_template
-        }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, {'form': form})
+
+        # context = {
+        #     'property': property,
+        #     'form': form,
+        #     'title': 'Edit ' + property.name,
+        #     'form_action': 'edit_property',
+        #     'form_template': self.form_template
+        # }
+        # return render(request, self.template_name, context)
 
 class EditProperty(LoginRequiredMixin, View):
     form_class = PropertyForm
