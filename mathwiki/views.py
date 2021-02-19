@@ -106,7 +106,14 @@ class CreateTheorem(LoginRequiredMixin, View):
             new_thm = form.save()
             return HttpResponseRedirect('/theorems/{}'.format(new_thm.id))
 
-        return render(request, self.template_name, {'form': form})
+        context = {
+            'theorem': theorem,
+            'form': form,
+            'title': 'Edit ' + theorem.name,
+            'form_action': 'edit_theorem',
+            'form_template': self.form_template
+        }
+        return render(request, self.template_name, context)
 
 class EditTheorem(LoginRequiredMixin, View):
     form_class = TheoremForm
